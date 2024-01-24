@@ -50,10 +50,13 @@ const pinkPrice = .55
 */
 
 // CODE HERE
-
-
-
-
+let totalAcres = 0;
+for (let i = 0; i < fujiAcres.length; i++) {
+totalAcres += fujiAcres[i] + galaAcres[i] + pinkAcres[i];
+}
+console.log(totalAcres);
+// I had some trouble with this one. i got how to do the loop and got that added but i forgot the code +=, i tried just = first but that didnt come out right as i know there were not only 9 acres picked between all of the days.
+// I also tried to use [] first for the totalacres but it came out with a number like 8000000 long and that was wrong for sure as the code needed a starting point.
 
 // PROBLEM 2
 
@@ -68,7 +71,11 @@ const pinkPrice = .55
 */
 
 // CODE HERE
-
+let daysOfWeek = 0
+ daysOfWeek = fujiAcres.length
+let averageDailyAcres = totalAcres / daysOfWeek;
+console.log(averageDailyAcres);
+// daysofweek had to be set to the loop being run through in order to devide it by totalacres, this way we could get the averagedailyacres to give us a set number for how many acres could be picked per day.
 
 
 
@@ -107,7 +114,12 @@ let days = 0
 
 // CODE HERE
 
-
+while (acresLeft > 0 ) {
+    days++;
+    acresLeft -= averageDailyAcres;
+}
+console.log(days)
+// we were adding a day each time it ran through a days worth of acres picked. as long as there was acres left to pick from it would add a day. logging those days to the variable "day"
 
 // PROBLEM 4
 
@@ -134,13 +146,25 @@ let days = 0
 */
 
 // CODE HERE
+let tonsPerAcre = 6.5
+let fujiTons = [];
+let galaTons = [];
+let pinkTons = [];
 
+for (let i = 0; i < fujiAcres.length; i++) {
+    fujiTons.push(fujiAcres[i] * tonsPerAcre);
+    galaTons.push(galaAcres[i] * tonsPerAcre);
+    pinkTons.push(pinkAcres[i] * tonsPerAcre);
+}
+console.log("Fuji Tons:", fujiTons);
+console.log("Gala Tons", galaTons);
+console.log("Pink Tons", pinkTons)
 // let fujiTons =
 // let galaTons =
 // let pinkTons =
 
-
-
+// This way might be a bit longer but it made more sense to me. i will need a refresher on the splice meathod as i couldnt figure it out. 
+// i made variables for each of the tons and then used the previous variables for acres to get the total number per day of apples picked of each veriety.  
 
 
 
@@ -161,7 +185,16 @@ let days = 0
 */
 
 // CODE HERE 
+let tonsToPounds = 2000
+let fujiTotalPounds = fujiTons.reduce((total, tons) => total + tons, 0) * tonsToPounds;
+let galaTotalPounds = galaTons.reduce((total, tons) => total + tons, 0) * tonsToPounds;
+let pinkTotalPounds = pinkTons.reduce((total, tons) => total + tons, 0) * tonsToPounds;
 
+console.log("Fuji Total Pounds :", fujiTotalPounds);
+console.log("Gala Total Pounds :", galaTotalPounds);
+console.log("Pink Total Pounds :", pinkTotalPounds);
+
+// i used reduce in this array which takes each element in the array and sums them all together into one number. i got the formula form chat gpt. and then we console log each apple type and we have our amount in pounds.
 // let fujiPounds =
 // let galaPounds =
 // let pinkPounds =
@@ -189,9 +222,14 @@ let days = 0
 
 // CODE HERE
 
-// let fujiProfit =
-// let galaProfit =
-// let pinkProfit =
+let fujiProfit = fujiTotalPounds * fujiPrice;
+let galaProfit = galaTotalPounds * galaPrice;
+let pinkProfit = pinkTotalPounds * pinkPrice;
+
+console.log("Fuji Profit :", fujiProfit);
+console.log("Gala Profit :", galaProfit);
+console.log("Pink Profit", pinkProfit);
+
 
 
 
@@ -209,3 +247,5 @@ let days = 0
 */
 
 // CODE HERE
+let totalProfit = fujiProfit + galaProfit + pinkProfit;
+console.log("Totoal Profit :", totalProfit)
